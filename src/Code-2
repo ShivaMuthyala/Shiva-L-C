@@ -1,0 +1,24 @@
+def Valid_input(user_input): #A function which is used to the see if the input is in correct format
+    if user_input.isdigit() and 1<= int(user_input) <=100:
+        return True
+    else:
+        return False
+def main():
+    random_guess=random.randint(1,100) #generate a random number
+    correct_guess=False    # condition which is used to check the correct number is guessed
+    user_guess=input("Guess a number between 1 and 100:")
+    count_of_guesses=0     
+    while not correct_guess:
+        if not Valid_input(user_input):
+            user_guess=input("I wont count this one Please enter a number between 1 to 100")
+            continue
+        else:
+            count_of_guesses+=1
+            user_guess=int(user_guess)
+        if user_guess<random_guess:
+            user_guess=input("Too low. Guess again")
+        elif user_guess>random_guess:
+            user_guess=input("Too High. Guess again")
+        else:
+            print("You guessed it in",count_of_guesses,"guesses!")
+            correct_guess=True

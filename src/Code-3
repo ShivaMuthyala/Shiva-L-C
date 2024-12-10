@@ -1,0 +1,29 @@
+def armstrong_number(number):
+    # Initializing Sum and Number of Digits
+    sum_of_digits = 0
+    no_of_digits = 0
+
+    # Calculating Number of individual digits
+    temperory_number = number
+    while temperory_number > 0:
+        no_of_digits = no_of_digits + 1
+        temperory_number = temperory_number // 10
+
+    # Finding Armstrong Number
+    temperory_number = number
+    for _ in range(1, temperory_number + 1):
+        last_digit = temperory_number % 10 #Will store the last digit of the input
+        sum_of_digits = sum_of_digits + (last_digit ** no_of_digits)
+        temperory_number //= 10
+    return sum_of_digits
+
+
+# End of Function
+
+# User Input
+user_input = int(input("\nPlease Enter the Number to Check for Armstrong: "))
+
+if (user_input == armstrong_number(user_input)):
+    print("\n %d is Armstrong Number.\n" % user_input)
+else:
+    print("\n %d is Not a Armstrong Number.\n" % user_input)

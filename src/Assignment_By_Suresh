@@ -1,0 +1,74 @@
+import java.util.ArrayList; 
+import java.util.List; 
+
+class Subject { 
+    String subjectName; 
+    int marks; 
+
+    public Subject(String subjectName, int marks) { 
+        this.subjectName = subjectName; 
+        this.marks = marks; 
+    } 
+} 
+
+class Student { 
+    String studentName; 
+    int rollNumber; 
+    List<Subject> subjectList; 
+
+    public Student(String studentName, int rollNumber, List<Subject> subjectList) { 
+        this.studentName = studentName; 
+        this.rollNumber = rollNumber; 
+        this.subjectList = subjectList; 
+    } 
+} 
+
+public class Main { 
+    public static void main(String[] args) { 
+        List<Student> studentList = new ArrayList<>(); 
+        studentList.add(new Student("Abjal", 101, List.of( 
+            new Subject("Maths", 85), 
+            new Subject("English", 90),
+            new Subject("Science", 78) 
+        ))); 
+        studentList.add(new Student("Babu", 102, List.of( 
+            new Subject("Maths", 70), 
+            new Subject("English", 88), 
+            new Subject("Science", 92) 
+        ))); 
+        studentList.add(new Student("Chinna", 103, List.of( 
+            new Subject("Maths", 95), 
+            new Subject("English", 80), 
+            new Subject("Science", 85) 
+        ))); 
+        printDetails(101, studentList); 
+    } 
+
+    public static void printStudentDetails(int rollNumber, List<Student> studentList) { 
+        Student foundStudent = null; 
+        for (Student student : studentList) { 
+            if (student.rollNumber == rollNumber) { 
+                foundStudent = student; 
+                break; 
+            } 
+        } 
+        if (foundStudent == null) { 
+            System.out.println("Not found: " + rollNumber); 
+            return; 
+        } 
+        int sumOfMarks = 0; 
+        for (Subject subject : foundStudent.subjectList) { 
+            sumOfMarks += subject.marks; 
+        } 
+        double totalPercentage = (double) sumOfMarks / (foundStudent.subjectList.size() * 100) * 100; 
+        System.out.println("Name: " + foundStudent.studentName); 
+        System.out.println("Roll: " + foundStudent.rollNumber); 
+        System.out.println("Details:"); 
+        for (Subject subject : foundStudent.subjectList) { 
+            System.out.println("  " + subject.subjectName + ": " + subject.marks); 
+        } 
+        System.out.println("Total: " + sumOfMarks); 
+        System.out.printf("Percentage: %.2f%%%n", totalPercentage); 
+        System.out.println("----------------------"); 
+    } 
+}
