@@ -5,31 +5,24 @@ public class Operators {
 	static int a= 5;
 	static int b =2;
 	static int d =8;
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		//Arithmetic operator
-		
+private static void arithmeticOperators() {
 	System.out.println("Addition of a and b = "+ (a+b));
 	System.out.println("Substraction of a and b = "+ (a-b));
 	System.out.println("multiplication of a and b = "+ (a*b));
 	System.out.println("division of a and b = "+  (a/b));  //divison
 	System.out.println("modulus of a and b = "+  (a%b));   //remainder
-	
-	//Rational operators 
-	
+}
+private static void rationalOperators() {
 	if (a>b) {
 		System.out.println("a is greater than b");
 	}
 	else if (a<b) {
 		System.out.println("b is greater than a");
 	} else {
-System.out.println("a is equal to b");
+		System.out.println("a is equal to b");
 	}
-	
-	//Logical operators for positive integers
-	
+}
+private static void oddOrEven() {
 	int c =a%2;
 	//usage of and operator
 	if ((a>1) && (c==0)) {          
@@ -41,7 +34,8 @@ System.out.println("a is equal to b");
 	} else {
         System.out.println("a is not an positive integer");
 	}
-	//Assignment operator
+}
+private static void sumOfDigits() {
 	int sum =0;
 	//sum of 1 to 10 digits
 	for (int i = 1; i <= 10; i++) {
@@ -49,4 +43,24 @@ System.out.println("a is equal to b");
     }
 	System.out.println("sum of 1 to 10 is "+ sum);
 	}
+
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Printing with arithmetic operations");
+	arithmeticOperators();
+	
+	System.out.println("-----------------------");
+	System.out.println("Printing with rational operations");
+	rationalOperators();
+	
+	System.out.println("-----------------------");
+	System.out.println("Printing with logical operations");
+	oddOrEven();
+	
+	System.out.println("-----------------------");
+	System.out.println("Printing with assignment operations");
+	sumOfDigits();
+	}	
 }
