@@ -29,6 +29,7 @@ abstract class User {
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
+
 	public String getUserType() {
 		return userType;
 	}

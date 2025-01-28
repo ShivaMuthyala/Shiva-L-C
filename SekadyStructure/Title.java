@@ -7,7 +7,7 @@ public class Title extends User {
 		setEmail("Title@gamil.com");
 		setContactNumber("0935735Title");
 		setUserType("Title");
-	
+
 	}
 
 	public void displayTitleDetails() {
@@ -16,11 +16,11 @@ public class Title extends User {
 		System.out.println(getContactNumber());
 		System.out.println(getUserType());
 	}
+
 	private ConnectionRequest connectionrequest = new ConnectionRequest();
-	
+
 	public void getBuildersDetail() {
-		System.out.println("We are here");
-		
+
 		Builder b = new Builder();
 
 		if (connectionrequest.connectionBuilderToTitle == true && connectionrequest.connectionTitleToBuilder == true) {
@@ -33,5 +33,5 @@ public class Title extends User {
 			}
 		}
 	}
-	
+
 }

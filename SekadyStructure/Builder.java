@@ -1,15 +1,16 @@
 package sekadyStructure;
 
 public class Builder extends User {
-	
+
 	private ConnectionRequest connectionrequest = new ConnectionRequest();
 	Title title = new Title();
+
 	public Builder() {
 		setName("Builder");
 		setEmail("Builder@gmail.com");
 		setContactNumber("0935735Builder");
 		setUserType("Builder");
-	
+
 	}
 
 	public void displayBuilderDetails() {
@@ -18,7 +19,7 @@ public class Builder extends User {
 		System.out.println(getContactNumber());
 	}
 
-	public void getTitleDetail() {	
+	public void getTitleDetail() {
 
 		if (connectionrequest.connectionBuilderToTitle == true && connectionrequest.connectionTitleToBuilder == true) {
 			title.displayTitleDetails();
@@ -31,7 +32,4 @@ public class Builder extends User {
 		}
 	}
 
-
-
-	
 }
