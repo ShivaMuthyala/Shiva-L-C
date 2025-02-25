@@ -1,0 +1,1 @@
+employee is an object because it represents a specific instance of the Employee class with properties and behaviors, whereas a data structure is used to store and organize multiple pieces of data.
