@@ -3,13 +3,17 @@ package JavaAssignment3_1;
 import java.util.Scanner;
 
 public class User {
-	String name;
-	static int age;
-	int salary;
-	double salaryInDouble;
-	static final int taxRatePercentage = 5;
+	private String name;
+	private static int age;
+	private int roundedSalary;
+	private double exactSalary;
+	private final int TAX_PER_PERCENTAGE = 5;
 
-	public void userDetails() {
+	public static int getAge() {
+		return age;
+	}
+
+	public void setUserDetails() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please enter your name");
 		this.name = scanner.nextLine();
@@ -18,14 +22,14 @@ public class User {
 			System.out.println("Please enter in a correct format");
 			scanner.next();
 		}
-		this.age = scanner.nextInt();
+		User.age = scanner.nextInt();
 		System.out.println("Please enter your salary");
 		while (!(scanner.hasNextInt())) {
 			System.out.println("Please enter in a correct format");
 			scanner.next();
 		}
-		this.salaryInDouble = scanner.nextInt();
-		this.salary = (int) salaryInDouble;
+		this.exactSalary = scanner.nextInt();
+		this.roundedSalary = (int) exactSalary;
 		scanner.close();
 		if ((age >= 0 && age <= 12)) {
 			System.out.println("Hey Kiddo hope you are doing good");
@@ -38,13 +42,13 @@ public class User {
 
 	public void getUserDetails() {
 		System.out.println("Please find your details");
-		System.out.println("Name : " + name + "\nAge: " + age + "\nSalary: " + salary);
+		System.out.println("Name : " + name + "\nAge: " + age + "\nSalary: " + exactSalary);
 	}
 
 	public void calculateSalaryAfterTax() {
-		double totalTax = (taxRatePercentage / 100.0) * salary;
+		double totalTax = (TAX_PER_PERCENTAGE / 100.0) * roundedSalary;
 		double remainingTax = totalTax;
-		double netSalary = salary;
+		double netSalary = roundedSalary;
 		System.out.println("\n--- Tax Deduction Process ---");
 
 		do {
@@ -60,21 +64,21 @@ public class User {
 	}
 
 	public void checkLoanEligibility() {
-		if ((this.age > 21) && (this.salary > 50000)) {
+		if ((User.age > 21) && (this.roundedSalary > 50000)) {
 			System.out.println("You are eligible for loan");
 		} else {
 			System.out.println("You are not eligible for loan");
-			if (this.age < 21) {
+			if (User.age < 21) {
 				System.out.println("Due to age restriction");
 			} else {
 				System.out.println("The salary is too low for the eligibility");
 			}
 		}
-		if ((salary > 0) && (salary <= 250000)) {
+		if ((roundedSalary > 0) && (roundedSalary <= 250000)) {
 			System.out.println("You belong to Basic Exemption Bracket");
-		} else if ((salary > 250000) && (salary <= 500000)) {
+		} else if ((roundedSalary > 250000) && (roundedSalary <= 500000)) {
 			System.out.println("You belong to Lower Income Bracket");
-		} else if ((salary > 500000) && (salary <= 1000000)) {
+		} else if ((roundedSalary > 500000) && (roundedSalary <= 1000000)) {
 			System.out.println("You belong to Middle Income Bracket");
 		} else {
 			System.out.println("You belong to Higher Income Bracket");

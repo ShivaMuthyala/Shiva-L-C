@@ -7,6 +7,8 @@ public class Test {
 		user.userDetails();
 		user.getUserDetails();
 		user.checkLoanEligibility();
+		PrintNumbers.printEvenNumbersUptoAge();
+		PrintNumbers.printNumbersUptoAge();
 	}
 
 }
