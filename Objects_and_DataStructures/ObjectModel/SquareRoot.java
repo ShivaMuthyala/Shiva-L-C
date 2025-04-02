@@ -4,11 +4,11 @@ public class SquareRoot implements UnaryOperation {
 	@Override
 	public double calculate(double a) {
 		double guess = 0;
-		double increament = 0.01;
+		double increment = 0.01;
 		while (guess * guess <= a) {
-			guess += increament;
+			guess += increment;
 		}
-		return guess - increament;
+		return guess - increment;
 	}
 
 }

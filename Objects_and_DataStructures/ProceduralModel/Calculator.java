@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Calculator {
 
-	public static double add(double a, double b) {
+	public static double addition(double a, double b) {
 		return a + b;
 	}
 
@@ -17,12 +17,12 @@ public class Calculator {
 	}
 
 	public static double squareRoot(double a) {
-		double guess = 0;
-		double increament = 0.01;
-		while (guess * guess <= a) {
-			guess += increament;
+		double approximate = 0;
+		double increment = 0.01;
+		while (approximate * approximate <= a) {
+			approximate += increment;
 		}
-		return guess - increament;
+		return approximate - increment;
 
 	}
 
@@ -31,11 +31,11 @@ public class Calculator {
 			System.out.println("Factorial of negative numbers is undefined.");
 		}
 
-		int result = 1;
-		for (int i = 1; i <= a; i++) {
-			result *= i;
+		int FactorialResult = 1;
+		for (int i = a; i =0; i--) {
+			FactorialResult *= i;
 		}
-		return result;
+		return FactorialResult;
 	}
 
 	public static double power(double base, double exponent) {
@@ -48,6 +48,7 @@ public class Calculator {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
+		Stack<Double> history = new Stack<>();
 		System.out.println("Please select an operation:\n" + "1. Addition\n" + "2. Subtraction\n" + "3. Multiply\n"
 				+ "4. Square Root\n" + "5. Factorial\n" + "6.Power");
 		int selection = scanner.nextInt();
@@ -63,7 +64,7 @@ public class Calculator {
 
 		switch (selection) {
 		case 1:
-			System.out.println(add(input1, input2));
+			System.out.println(addition(input1, input2));
 			break;
 		case 2:
 			System.out.println(subtract(input1, input2));

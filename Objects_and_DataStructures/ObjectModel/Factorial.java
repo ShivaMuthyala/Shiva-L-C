@@ -9,7 +9,7 @@ public class Factorial implements UnaryOperation {
 			throw new IllegalArgumentException("Factorial of negative numbers is undefined.");
 		}
 
-		int result = 1;
+		double result = 1;
 		for (int i = 1; i <= a; i++) {
 			result *= i;
 		}

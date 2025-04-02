@@ -7,7 +7,7 @@ public class Test {
 		Scanner scanner = new Scanner(System.in);
 
 
-		System.out.println("Select an operation:\n" + "1. Addition\n" + "2. Substraction\n" + "3. Multiplication\n"
+		System.out.println("Select an operation:\n" + "1. Addition\n" + "2. Subtraction\n" + "3. Multiplication\n"
 				+ "4. Square Root\n" + "5. Factorial\n" + "6. Power");
 
 		int choice = scanner.nextInt();
@@ -16,7 +16,7 @@ public class Test {
 		UnaryOperation unaryoperation = null;
 		switch (choice) {
 		case 1:
-			binaryoperation = new Add();
+			binaryoperation = new Addition();
 			System.out.println("Enter two numbers:");
 			num1 = scanner.nextDouble();
 			num2 = scanner.nextDouble();

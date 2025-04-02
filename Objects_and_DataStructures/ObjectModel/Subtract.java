@@ -1,6 +1,6 @@
 package ObjectModel;
 
-public class Substract implements BinaryOperation {
+public class Subtract implements BinaryOperation {
 
 	@Override
 	public double calculate(double a, double b) {
