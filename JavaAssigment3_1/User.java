@@ -6,8 +6,8 @@ public class User {
 	private String name;
 	private static int age;
 	private int roundedSalary;
-	private double exactSalary;
-	private final int TAX_PER_PERCENTAGE = 5;
+	private double salary;
+	private final int TAX_PERCENTAGE = 5;
 
 	public static int getAge() {
 		return age;
@@ -28,8 +28,8 @@ public class User {
 			System.out.println("Please enter in a correct format");
 			scanner.next();
 		}
-		this.exactSalary = scanner.nextInt();
-		this.roundedSalary = (int) exactSalary;
+		this.salary = scanner.nextInt();
+		this.roundedSalary = (int) salary;
 		scanner.close();
 		if ((age >= 0 && age <= 12)) {
 			System.out.println("Hey Kiddo hope you are doing good");
@@ -42,7 +42,7 @@ public class User {
 
 	public void getUserDetails() {
 		System.out.println("Please find your details");
-		System.out.println("Name : " + name + "\nAge: " + age + "\nSalary: " + exactSalary);
+		System.out.println("Name : " + name + "\nAge: " + age + "\nSalary: " + salary);
 	}
 
 	public void calculateSalaryAfterTax() {

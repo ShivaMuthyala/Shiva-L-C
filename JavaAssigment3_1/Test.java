@@ -4,11 +4,11 @@ public class Test {
 
 	public static void main(String[] args) {
 		User user = new User();
-		user.userDetails();
+		user.setUserDetails();
 		user.getUserDetails();
 		user.checkLoanEligibility();
-		PrintNumbers.printEvenNumbersUptoAge();
-		PrintNumbers.printNumbersUptoAge();
+		PrintNumbers.printEvenNumbersUpToAge();
+		PrintNumbers.printNumbersUpToAge();
 	}
 
 }
