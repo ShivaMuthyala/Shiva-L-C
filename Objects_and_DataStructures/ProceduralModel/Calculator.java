@@ -45,7 +45,34 @@ public class Calculator {
 		}
 		return result;
 	}
-
+	public double getInput(Scanner scanner, String message) {
+        System.out.println(message);
+        return scanner.nextDouble();
+    }
+	public void performCalculation(int selection, double input1, double input2) {
+        switch (selection) {
+            case 1:
+                System.out.println(add(input1, input2));
+                break;
+            case 2:
+                System.out.println(subtract(input1, input2));
+                break;
+            case 3:
+                System.out.println(multiply(input1, input2));
+                break;
+            case 4:
+                System.out.println(String.format("%.2f", squareRoot(input1)));
+                break;
+            case 5:
+                System.out.println(factorial(input1));
+                break;
+            case 6:
+                System.out.println(power(input1, input2));
+                break;
+            default:
+                System.out.println("Invalid input");
+        }
+    }
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		Stack<Double> history = new Stack<>();
@@ -53,36 +80,15 @@ public class Calculator {
 				+ "4. Square Root\n" + "5. Factorial\n" + "6.Power");
 		int selection = scanner.nextInt();
 		double input1, input2 = 0;
-		if (selection == 4 || selection == 5) {
-			System.out.println("Please enter a number to calculate");
-			input1 = scanner.nextDouble();
-		} else {
-			System.out.println("Please enter 2 number to calculate");
-			input1 = scanner.nextInt();
-			input2 = scanner.nextInt();
-		}
+        if (selection == 4 || selection == 5) {
+            input1 = getInput(scanner, "Please enter a number to calculate:");
+        } else {
+            input1 = getInput(scanner, "Please enter the first number:");
+            input2 = getInput(scanner, "Please enter the second number:");
+        }
 
-		switch (selection) {
-		case 1:
-			System.out.println(addition(input1, input2));
-			break;
-		case 2:
-			System.out.println(subtract(input1, input2));
-			break;
-		case 3:
-			System.out.println(multiply(input1, input2));
-			break;
-		case 4:
-			System.out.println(String.format("%.2f", squareRoot(input1)));
-			break;
-		case 5:
-			System.out.println(factorial(input1));
-			break;
-		case 6:
-			System.out.println(power(input1, input2));
-		default:
-			System.out.println("Invalid input");
-		}
+    
+        performCalculation(selection, input1, input2);
 
 		scanner.close();
 	}
