@@ -13,23 +13,19 @@ public class Builder extends User {
 
 	}
 
-	public void displayBuilderDetails() {
-		System.out.println(getName());
-		System.out.println(getEmail());
-		System.out.println(getContactNumber());
-	}
+	
 
 	public void getTitleDetail() {
 
-		if (connectionrequest.connectionBuilderToTitle == true && connectionrequest.connectionTitleToBuilder == true) {
-			title.displayTitleDetails();
-		} else {
-			if (connectionrequest.connectionBuilderToTitle == false) {
-				System.out.println("Builder has not created connection");
-			} else {
-				System.out.println("Title has not created connection");
-			}
+		if (!connectionRequest.isBuilderConnectedToTitle) {
+			System.out.println("Builder has not created connection");
+			return;
 		}
+		if (!connectionRequest.isTitleConnectedToBuilder) {
+			System.out.println("Title has not created connection");
+			return;
+		}
+		title.displayDetails();
 	}
 
 }

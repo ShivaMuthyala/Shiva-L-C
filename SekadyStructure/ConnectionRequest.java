@@ -1,8 +1,8 @@
 package sekadyStructure;
 
 public class ConnectionRequest {
-	boolean connectionBuilderToTitle = true;
-	boolean connectionTitleToBuilder = true;
+	boolean isBuilderConnectedToTitle= true;
+	boolean isTitleConnectedToBuilder= true;
 	/*
 	 * boolean connectionBuilderToFund; boolean connectionBuilderToLender; boolean
 	 * connectionFundToBuilder; boolean connectionFundToTitle; boolean

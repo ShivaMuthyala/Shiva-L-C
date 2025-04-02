@@ -10,28 +10,22 @@ public class Title extends User {
 
 	}
 
-	public void displayTitleDetails() {
-		System.out.println(getName());
-		System.out.println(getEmail());
-		System.out.println(getContactNumber());
-		System.out.println(getUserType());
-	}
 
 	private ConnectionRequest connectionrequest = new ConnectionRequest();
 
 	public void getBuildersDetail() {
 
-		Builder b = new Builder();
-
-		if (connectionrequest.connectionBuilderToTitle == true && connectionrequest.connectionTitleToBuilder == true) {
-			b.displayBuilderDetails();
-		} else {
-			if (connectionrequest.connectionBuilderToTitle == false) {
-				System.out.println("Builder has not created connection");
-			} else {
-				System.out.println("Title has not created connection");
-			}
+		Builder builder = new Builder();
+		if (!connectionRequest.isBuilderConnectedToTitle) {
+			System.out.println("Builder has not created connection");
+			return;
 		}
+		if (!connectionRequest.isTitleConnectedToBuilder) {
+			System.out.println("Title has not created connection");
+			return;
+		}
+		builder.displayDetails();
+		
 	}
 
 }

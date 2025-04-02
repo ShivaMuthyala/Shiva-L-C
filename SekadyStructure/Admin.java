@@ -12,18 +12,14 @@ public class Admin extends User {
 
 	}
 
-	public void displayAdminDetails() {
-		System.out.println(getName());
-		System.out.println(getEmail());
-		System.out.println(getContactNumber());
-	}
+
 
 	public void getBuilderDetails() {
-		builder.displayBuilderDetails();
+		builder.displayDetails();
 	}
 
 	public void getTitleDetails() {
-		title.displayTitleDetails();
+		title.displayDetails();
 	}
 
 }

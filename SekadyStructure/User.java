@@ -37,4 +37,9 @@ abstract class User {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
+	public void displayDetails() {
+		System.out.println(getName());
+		System.out.println(getEmail());
+		System.out.println(getContactNumber());
+	}
 }
