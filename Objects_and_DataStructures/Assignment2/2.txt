@@ -1,0 +1,4 @@
+The better way to write a customer class is to add the substractmoney method in customer rather that adding in wallet class
+The main reson for this is when we give substract money in wallet class we can use this method with another classes with the reference of wallet which is a bad approach
+It is like saying someone can take the money with out being the customer involved
+If we give the substractmoney in customer class it means the customer involvement is needed when substracting money
