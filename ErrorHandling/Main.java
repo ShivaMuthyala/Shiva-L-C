@@ -3,6 +3,9 @@ package ErrorHandling;
 import java.util.Scanner;
 
 public class Main {
+	private static final int OPTION_WITHDRAW = 1;
+	private static final int OPTION_SIMULATE_SERVER_DOWN = 2;
+	private static final int OPTION_EXIT = 3;
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -35,9 +38,9 @@ public class Main {
                 return true;
             } else {
                 attempts++;
-                System.out.println("❌ Incorrect PIN. You have " + (maxAttempts - attempts) + " attempts left.");
+                System.out.println("Incorrect PIN. You have " + (maxAttempts - attempts) + " attempts left.");
                 if (attempts == maxAttempts) {
-                    System.out.println("❌ Too many incorrect attempts. Your card is blocked.");
+                    System.out.println("Too many incorrect attempts. Your card is blocked.");
                     sessionActive = false;
                     break;
                 }
@@ -51,32 +54,33 @@ public class Main {
 
         while (sessionActive) {
             System.out.println("\n===== ATM Menu =====");
-            System.out.println("1. Withdraw");
-            System.out.println("2. Simulate Server Down");
-            System.out.println("3. Exit");
+            System.out.println(OPTION_WITHDRAW + ". Withdraw");
+            System.out.println(OPTION_SIMULATE_SERVER_DOWN + ". Simulate Server Down");
+            System.out.println(OPTION_EXIT + ". Exit");
             System.out.print("Choose an option: ");
             int option = scanner.nextInt();
             scanner.nextLine();
 
             switch (option) {
-                case 1:
+                case OPTION_WITHDRAW:
                     processWithdrawal(scanner, atm, user);
                     break;
 
-                case 2:
+                case OPTION_SIMULATE_SERVER_DOWN:
                     simulateServerDown(atm);
                     break;
 
-                case 3:
+                case OPTION_EXIT:
                     sessionActive = false;
-                    System.out.println("👋 Thank you for using the ATM.");
+                    System.out.println("Thank you for using the ATM.");
                     break;
 
                 default:
-                    System.out.println("❗ Invalid option. Try again.");
+                    System.out.println("Invalid option. Try again.");
             }
         }
     }
+
 
     private static void processWithdrawal(Scanner scanner, ATM atm, User user) {
         System.out.print("Enter amount to withdraw: ");

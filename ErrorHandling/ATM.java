@@ -72,6 +72,6 @@ class ATM {
         atmCash -= amount;
         withdrawnToday += amount;
         user.deductBalance(amount);
-        System.out.println("✅ Withdrawal successful: $" + amount);
+        System.out.println("Withdrawal successful: $" + amount);
     }
 }
