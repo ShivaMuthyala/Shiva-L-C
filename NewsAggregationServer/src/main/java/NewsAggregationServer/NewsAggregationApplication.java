@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages = {"NewsAggregation", "Entity", "Controller"})
+@SpringBootApplication(scanBasePackages = { "NewsAggregation", "Entity", "Controller" })
 @EnableJpaRepositories(basePackages = "Repo")
 @EntityScan(basePackages = "Entity")
 public class NewsAggregationApplication {

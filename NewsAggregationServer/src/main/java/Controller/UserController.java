@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import DTO.LoginRequest;
+import DTO.SignUpRequest;
 import Entity.User;
 import Repo.UserRepo;
 
@@ -32,7 +35,7 @@ public class UserController {
 		return new ResponseEntity<>(userRepo.findAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/api/user/{user_name}")
+	@GetMapping("/api/user/username/{userName}")
 	public ResponseEntity<User> getUserByName(@PathVariable String userName) {
 		Optional<User> user = userRepo.findByUsername(userName);
 		if (user.isPresent()) {
@@ -80,4 +83,31 @@ public class UserController {
 		}
 
 	}
+
+	@PostMapping("/api/login")
+	public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+		Optional<User> user = userRepo.findByUsername(loginRequest.getUserName());
+		if (user.isPresent() && user.get().getPassword().equals(loginRequest.getPassword())) {
+			return ResponseEntity.status(HttpStatus.OK).body("Login Successful");
+		}
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+	}
+
+	@PostMapping("/api/signUp")
+	public ResponseEntity<String> SignUp(@RequestBody SignUpRequest signUpRequest) {
+		Optional<User> existingUser = userRepo.findByUsername(signUpRequest.getUserName());
+
+		if (existingUser.isPresent()) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists.");
+		} else {
+			User newUser = new User();
+			newUser.setUserName(signUpRequest.getUserName());
+			newUser.setEmail(signUpRequest.getEmail());
+			newUser.setPassword(signUpRequest.getPassword());
+			newUser.setIsAdmin(signUpRequest.getIsAdmin());
+			return ResponseEntity.status(HttpStatus.OK).body("You are successfully signed up");
+		}
+
+	}
+
 }
