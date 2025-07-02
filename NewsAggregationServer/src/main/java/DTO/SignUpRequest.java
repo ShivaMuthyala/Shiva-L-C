@@ -1,12 +1,10 @@
 package DTO;
 
-import Entity.User;
-
 public class SignUpRequest {
 	private String userName;
 	private String email;
 	private String password;
-	private User.isAdmin isAdmin;
+	
 
 	public String getUserName() {
 		return userName;
@@ -30,13 +28,5 @@ public class SignUpRequest {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public User.isAdmin getIsAdmin() {
-		return isAdmin;
-	}
-
-	public void setIsAdmin(User.isAdmin isAdmin) {
-		this.isAdmin = isAdmin;
 	}
 }

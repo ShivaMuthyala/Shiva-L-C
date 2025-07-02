@@ -61,8 +61,8 @@ public class UserController {
 	public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User userdata) {
 		Optional<User> user = userRepo.findById(id);
 		if (user.isPresent()) {
+			user.get().setUserId(userdata.getUserId());
 			user.get().setEmail(userdata.getEmail());
-			user.get().setIsAdmin(userdata.getIsAdmin());
 			user.get().setPassword(userdata.getPassword());
 			user.get().setUserName(userdata.getUserName());
 			return new ResponseEntity<>(userRepo.save(user.get()), HttpStatus.OK);
@@ -104,7 +104,7 @@ public class UserController {
 			newUser.setUserName(signUpRequest.getUserName());
 			newUser.setEmail(signUpRequest.getEmail());
 			newUser.setPassword(signUpRequest.getPassword());
-			newUser.setIsAdmin(signUpRequest.getIsAdmin());
+			userRepo.save(newUser);
 			return ResponseEntity.status(HttpStatus.OK).body("You are successfully signed up");
 		}
 
