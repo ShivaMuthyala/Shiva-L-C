@@ -21,7 +21,7 @@ public class LoginFlowMenu {
 		System.out.println("Enter password: ");
 		String password = scanner.next();
 
-		if (username.isEmpty() || password.length() < 4) {
+		if (username.isEmpty() || password.length() < 6) {
 			System.out.println(
 					"Invalid credentials. Username can't be empty and password must be at least 6 characters.");
 			return;

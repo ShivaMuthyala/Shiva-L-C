@@ -7,6 +7,9 @@ import Menu.*;
 public class Authentication {
 	static UserAuthenticator userAuthenticator = new UserAuthenticator();
 	static Scanner scanner = new Scanner(System.in);
+	private final static int LOGIN = 1;
+	private final static int SIGNUP = 2;
+	private final static int EXIT = 3;
 
 	public static void showMainMenu() throws IOException {
 		while (true) {
@@ -15,17 +18,17 @@ public class Authentication {
 			int choice = scanner.nextInt();
 
 			switch (choice) {
-				case 1:
-					new LoginFlowMenu(scanner).handleLoginFlow();
-					break;
-				case 2:
-					new SignUpFlowMenu(scanner).handleSignUpFlow();
-					break;
-				case 3:
-					System.out.println("Successfully exited the system");
-					System.exit(0);
-				default:
-					System.out.println("Invalid choice.");
+			case LOGIN:
+				new LoginFlowMenu(scanner).handleLoginFlow();
+				break;
+			case SIGNUP:
+				new SignUpFlowMenu(scanner).handleSignUpFlow();
+				break;
+			case EXIT:
+				System.out.println("Successfully exited the system");
+				System.exit(0);
+			default:
+				System.out.println("Invalid choice.");
 			}
 		}
 	}

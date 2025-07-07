@@ -26,6 +26,7 @@ public class NewsController {
 
 	@Autowired
 	NewsRepo newsRepo;
+
 	@Scheduled(cron = "0 0 */2 * * *")
 	@PostMapping("/api/fetchNews")
 	public ResponseEntity<String> fetchNews() throws JsonProcessingException {
@@ -49,7 +50,6 @@ public class NewsController {
 				news.setTitle(item.path("title").asText());
 				news.setDescription(item.path("description").asText());
 				news.setKeywords(item.path("keywords").asText());
-				System.out.println(item.path("keywords").asText());
 				news.setSnippet(item.path("snippet").asText());
 				news.setUrl(item.path("url").asText());
 				news.setImage_url(item.path("image_url").asText());
@@ -68,8 +68,8 @@ public class NewsController {
 
 	@GetMapping("/api/getNews")
 	public ResponseEntity<List<News>> getAllNews() {
-	    List<News> newsList = newsRepo.findAll();
-	    return ResponseEntity.ok(newsList);
+		List<News> newsList = newsRepo.findAll();
+		return ResponseEntity.ok(newsList);
 	}
 
 }

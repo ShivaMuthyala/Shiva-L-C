@@ -7,33 +7,33 @@ import Authenticator.UserAuthenticator;
 import DTO.SignUpRequest;
 
 public class SignUpFlowMenu {
-    private final UserAuthenticator userAuthenticator = new UserAuthenticator();
-    private final Scanner scanner;
+	private final UserAuthenticator userAuthenticator = new UserAuthenticator();
+	private final Scanner scanner;
 
-    public SignUpFlowMenu(Scanner scanner) {
-        this.scanner = scanner;
-    }
+	public SignUpFlowMenu(Scanner scanner) {
+		this.scanner = scanner;
+	}
 
-    public void handleSignUpFlow() throws IOException {
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
+	public void handleSignUpFlow() throws IOException {
+		System.out.print("Enter username: ");
+		String username = scanner.nextLine();
 
-        System.out.print("Enter password (min 6 chars): ");
-        String password = scanner.nextLine();
+		System.out.print("Enter password (min 6 chars): ");
+		String password = scanner.nextLine();
 
-        System.out.print("Enter email: ");
-        String email = scanner.nextLine();
+		System.out.print("Enter email: ");
+		String email = scanner.nextLine();
 
-        if (username.isEmpty() || password.length() < 6 || !email.contains("@")) {
-            System.out.println("Invalid input. Please check username, password, and email format.");
-            return;
-        }
+		if (username.isEmpty() || password.length() < 6 || !email.contains("@")) {
+			System.out.println("Invalid input. Please check username, password, and email format.");
+			return;
+		}
 
-        SignUpRequest request = new SignUpRequest();
-        request.setUserName(username);
-        request.setPassword(password);
-        request.setEmail(email);
+		SignUpRequest request = new SignUpRequest();
+		request.setUserName(username);
+		request.setPassword(password);
+		request.setEmail(email);
 
-        userAuthenticator.signUp(request);
-    }
+		userAuthenticator.signUp(request);
+	}
 }

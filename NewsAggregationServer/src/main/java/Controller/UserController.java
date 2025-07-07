@@ -37,7 +37,7 @@ public class UserController {
 
 	@GetMapping("/api/user/username/{userName}")
 	public ResponseEntity<User> getUserByName(@PathVariable String userName) {
-		Optional<User> user = userRepo.findByUsername(userName);
+		Optional<User> user = userRepo.findByUserName(userName);
 		if (user.isPresent()) {
 			return new ResponseEntity<>(user.get(), HttpStatus.OK);
 		} else {
@@ -86,7 +86,7 @@ public class UserController {
 
 	@PostMapping("/api/login")
 	public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-		Optional<User> user = userRepo.findByUsername(loginRequest.getUserName());
+		Optional<User> user = userRepo.findByUserName(loginRequest.getUserName());
 		if (user.isPresent() && user.get().getPassword().equals(loginRequest.getPassword())) {
 			return ResponseEntity.status(HttpStatus.OK).body("Login Successful");
 		}
@@ -95,7 +95,7 @@ public class UserController {
 
 	@PostMapping("/api/signUp")
 	public ResponseEntity<String> SignUp(@RequestBody SignUpRequest signUpRequest) {
-		Optional<User> existingUser = userRepo.findByUsername(signUpRequest.getUserName());
+		Optional<User> existingUser = userRepo.findByUserName(signUpRequest.getUserName());
 
 		if (existingUser.isPresent()) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists.");

@@ -5,18 +5,23 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+import Utilities.Common;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.Scanner;
 
 public class News {
+	private final Common common = new Common();
 	private static final int PAGE_SIZE = 10;
-	private Scanner scanner = new Scanner(System.in);
+	private final Scanner scanner = new Scanner(System.in);
+
+	private static final int START_OVER = 1;
+	private static final int NEXT = 1;
+	private static final int BACK = 2;
+	private static final int LOGOUT = 3;
 
 	public void fetchNews() throws IOException {
-		URL url = new URL("http://localhost:9494/api/getNews");
+		URL url = new URL(common.getBaseUrl() + "/api/getNews");
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("GET");
 
@@ -38,28 +43,19 @@ public class News {
 		}
 	}
 
-	private void showPaginated(org.json.JSONArray newsArray) throws IOException {
+	private void showPaginated(JSONArray newsArray) throws IOException {
 		int currentPage = 0;
 		int totalNews = newsArray.length();
-		int totalPages;
-
-		if (totalNews % PAGE_SIZE == 0) {
-			totalPages = totalNews / PAGE_SIZE;
-		} else {
-			totalPages = totalNews / PAGE_SIZE + 1;
-		}
+		int totalPages = (int) Math.ceil((double) totalNews / PAGE_SIZE);
 
 		while (true) {
 			int startIndex = currentPage * PAGE_SIZE;
-			int endIndex = startIndex + PAGE_SIZE;
-			if (endIndex > totalNews) {
-				endIndex = totalNews;
-			}
+			int endIndex = Math.min(startIndex + PAGE_SIZE, totalNews);
 
 			System.out.println("\n-- Page " + (currentPage + 1) + " of " + totalPages + " --\n");
-
 			for (int i = startIndex; i < endIndex; i++) {
 				JSONObject news = newsArray.getJSONObject(i);
+				System.out.println("Id          : " + news.getInt("newsId"));
 				System.out.println("Title       : " + news.getString("title"));
 				System.out.println("Description : " + news.optString("description"));
 				System.out.println("Source      : " + news.getString("source"));
@@ -71,44 +67,30 @@ public class News {
 			if (currentPage == totalPages - 1) {
 				System.out.println("End of news.");
 				System.out.println("1. Start Over\n2. Back\n3. Logout");
-				int finalChoice = scanner.nextInt();
-
-				if (finalChoice == 1) {
-					currentPage = 0;
-				} else if (finalChoice == 2) {
-					if (currentPage == 0) {
-						System.out.println("This is the first page.");
-					} else {
-						currentPage = currentPage - 1;
-					}
-				} else if (finalChoice == 3) {
-					System.out.println("Logged out successfully.\n");
-					Authenticator.Authentication.showMainMenu();
-					return;
-				} else {
-					System.out.println("Invalid choice.");
-				}
-
 			} else {
 				System.out.println("1. Next\n2. Back\n3. Logout");
-				int choice = scanner.nextInt();
+			}
 
-				if (choice == 1) {
-					currentPage = currentPage + 1;
-				} else if (choice == 2) {
-					if (currentPage == 0) {
-						System.out.println("This is the first page.");
-					} else {
-						currentPage = currentPage - 1;
-					}
-				} else if (choice == 3) {
-					System.out.println("Logged out successfully.\n");
-					Authenticator.Authentication.showMainMenu();
-					return;
+			int userChoice = scanner.nextInt();
+
+			if (userChoice == START_OVER && currentPage == totalPages - 1) {
+				currentPage = 0;
+			} else if (userChoice == NEXT && currentPage < totalPages - 1) {
+				currentPage++;
+			} else if (userChoice == BACK) {
+				if (currentPage == 0) {
+					System.out.println("This is the first page.");
 				} else {
-					System.out.println("Invalid choice.");
+					currentPage--;
 				}
+			} else if (userChoice == LOGOUT) {
+				System.out.println("Logged out successfully.\n");
+				Authenticator.Authentication.showMainMenu();
+				return;
+			} else {
+				System.out.println("Invalid choice.");
 			}
 		}
 	}
+
 }
